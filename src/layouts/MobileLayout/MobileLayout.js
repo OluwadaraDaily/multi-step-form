@@ -1,4 +1,5 @@
 import './MobileLayout.scss'
+import Button from '../../components/Button/Button'
 
 function MobileLayout() {
   const tabItems = ['1', '2', '3', '4']
@@ -13,7 +14,7 @@ function MobileLayout() {
 
       </div>
       <div className="footer">
-        <button>Next Step</button>
+        <Button btnText="Next Step" />
       </div>
     </div>
   )
