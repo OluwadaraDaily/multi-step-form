@@ -7,4 +7,9 @@
   border-radius: 4px;
   font-size: 1.4rem;
   line-height: 1.8rem;
+
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
 }
