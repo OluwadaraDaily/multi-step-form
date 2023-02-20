@@ -1,0 +1,23 @@
+.plan-item-div {
+  padding: 1.8rem;
+  border: .1rem solid #eee;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1.5rem 0;
+  gap: .8rem;
+  .name-and-price {
+
+    .plan-name {
+      font-family: 'Ubuntu-Medium';
+      font-size: 1.5rem;
+      line-height: 2rem;
+      margin: .3rem 0;
+    }
+    .plan-price {
+      font-size: 1.5rem;
+      color: #bbb;
+    }
+  }
+}

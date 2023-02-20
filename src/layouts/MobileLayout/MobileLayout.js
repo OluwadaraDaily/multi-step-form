@@ -23,7 +23,7 @@ function MobileLayout() {
   const [currentTab, setCurrentTab] = useState('1')
 
   useEffect(() => {
-    handleFormStateChange('1')
+    handleFormStateChange('2')
   }, [])
 
   const handleFormStateChange = (tabName) => {
@@ -56,9 +56,7 @@ function MobileLayout() {
         )) }
       </div>
       <div className="form-card">
-        <pre style={{ fontSize: '1.4rem' }}>{ JSON.stringify(tabStates) }</pre>
-        <pre>{ currentTab }</pre>
-        <p>{ typeof currentTab }</p>
+        {/* <pre style={{ fontSize: '1.4rem' }}>{ JSON.stringify(tabStates) }</pre> */}
         {tabStates[1] && <FormOne/>}
         {tabStates[2] && <FormTwo/>}
         {tabStates[3] && <FormThree/>}

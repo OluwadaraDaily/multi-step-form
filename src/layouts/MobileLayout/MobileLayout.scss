@@ -30,10 +30,12 @@
     background-color: #fff;
     width: 90%;
     margin: 0 auto;
-    height: 70%;
-    border: 1px solid #000;
     border-radius: 1.5rem;
     margin-top: 3rem;
+    padding: 3rem 2rem;
+    box-shadow: 1px 13px 8px 1px rgba(214,214,214,0.75);
+    -webkit-box-shadow: 1px 13px 8px 1px rgba(214,214,214,0.75);
+    -moz-box-shadow: 1px 13px 8px 1px rgba(214,214,214,0.75);
   }
 
   .footer {
@@ -57,6 +59,7 @@
         margin: 0;
         font-size: 1.5rem;
         color: #aaa;
+        cursor: pointer;
       }
     }
 
@@ -67,5 +70,6 @@
 }
 
 .fill {
-  background-color: #ccc;
+  background-color: #eef6ff;
+  color: #000 !important;
 }
