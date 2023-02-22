@@ -3,25 +3,41 @@ import PlanItem from '../../components/PlanItem/PlanItem'
 import arcadeImage from '../../images/icon-arcade.svg'
 import advancedImage from '../../images/icon-advanced.svg'
 import proImage from '../../images/icon-pro.svg'
+import Switch from '../../components/Switch/Switch'
+import { useState } from 'react'
 
 function FormTwo() {
   const plans = [
     {
       planName: "Arcade",
-      price: "$9/mo",
+      monthlyPrice: "$9/mo",
+      yearlyPrice: "$90/yr",
       image: arcadeImage
     },
     {
       planName: "Advanced",
-      price: "$12/mo",
+      monthlyPrice: "$12/mo",
+      yearlyPrice: "120/yr",
       image: advancedImage
     },
     {
       planName: "Pro",
-      price: "$15/mo",
+      monthlyPrice: "$15/mo",
+      yearlyPrice: "$150/yr",
       image: proImage
     },
   ]
+  const [switchValue, setSwitchValue] = useState(false)
+  const [planType, setPlanType] = useState('monthly')
+  const handleSwitchOnClick = () => {
+    setSwitchValue(prevValue => !prevValue)
+    setPlanType(prevValue => {
+      if (prevValue === 'monthly') {
+        return 'yearly'
+      }
+      return 'monthly'
+    })
+  }
   return (
     <div className='form-two-container'>
       <div className="text-section">
@@ -31,9 +47,12 @@ function FormTwo() {
         </p>
       </div>
       <div className="plans-section">
-        {plans.map((item) => (
-          <PlanItem planName={item.planName} price={item.price} image={item.image}/>
+        {plans.map((item, index) => (
+          <PlanItem key={index} planName={item.planName} monthlyPrice={item.monthlyPrice} yearlyPrice={item.yearlyPrice} image={item.image} planType={planType}/>
         ))}
+      </div>
+      <div className="plan-switch">
+        <Switch handleOnClick={handleSwitchOnClick}  switchValue={switchValue}/>
       </div>
     </div>
   )

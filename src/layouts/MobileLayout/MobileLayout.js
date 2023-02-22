@@ -22,10 +22,6 @@ function MobileLayout() {
   const [tabStates, setTabsStates] = useState(initialTabState)
   const [currentTab, setCurrentTab] = useState('1')
 
-  useEffect(() => {
-    handleFormStateChange('2')
-  }, [])
-
   const handleFormStateChange = (tabName) => {
     setTabsStates((prevState) => initialTabState)
     setTabsStates((prevState) => {
@@ -34,6 +30,11 @@ function MobileLayout() {
     })
     setCurrentTab(tabName)
   }
+
+  useEffect(() => {
+    handleFormStateChange('4')
+  }, [])
+
   const handleFormMovement = (direction) => {
     let currentTabNumber = Number(currentTab)
     switch(direction) {
@@ -56,7 +57,6 @@ function MobileLayout() {
         )) }
       </div>
       <div className="form-card">
-        {/* <pre style={{ fontSize: '1.4rem' }}>{ JSON.stringify(tabStates) }</pre> */}
         {tabStates[1] && <FormOne/>}
         {tabStates[2] && <FormTwo/>}
         {tabStates[3] && <FormThree/>}

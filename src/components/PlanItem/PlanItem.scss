@@ -1,5 +1,5 @@
 .plan-item-div {
-  padding: 1.8rem;
+  padding: 1rem;
   border: .1rem solid #eee;
   border-radius: 1rem;
   display: flex;
@@ -8,7 +8,6 @@
   margin: 1.5rem 0;
   gap: .8rem;
   .name-and-price {
-
     .plan-name {
       font-family: 'Ubuntu-Medium';
       font-size: 1.5rem;
@@ -18,6 +17,10 @@
     .plan-price {
       font-size: 1.5rem;
       color: #bbb;
+      margin: .3rem 0;
+    }
+    .yearly-price-discount {
+      font-size: 1.3rem;
     }
   }
 }

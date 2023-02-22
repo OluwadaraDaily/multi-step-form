@@ -1,0 +1,15 @@
+.checkbox {
+  border: .1rem solid #ccc;
+  border-radius: .5rem;
+  height: 2.5rem;
+  width: 2.5rem;
+  position: relative;
+  background-color: #000;
+  .check-icon {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
