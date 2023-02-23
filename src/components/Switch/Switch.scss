@@ -1,0 +1,40 @@
+.switch-div {
+  padding: 1rem;
+  background-color: #dedede;
+  border-radius: .4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+
+  .switch-icon {
+    height: 1.2rem;
+    width: 2.4rem;
+    background-color: #08173b;
+    display: flex;
+    align-items: center;
+    padding: .3rem .1rem;
+    border-radius: 1.6rem;
+    .switch {
+      height: 1rem;
+      width: 1rem;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: 0.3s ease-in-out;
+      -webkit-transition: 0.3s ease-in-out;
+    }
+  }
+
+  .switch-item-text, .switch-icon {
+    font-family: 'Ubuntu-Medium';
+    font-size: 1.2rem;
+  }
+}
+
+.go-left {
+  transform: translateX(0);
+}
+.go-right {
+  transform: translateX(1.2rem);
+}

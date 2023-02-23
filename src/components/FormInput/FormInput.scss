@@ -1,0 +1,21 @@
+.form-input {
+  margin: 1.5rem 0;
+  .label {
+    font-size: 1.3rem;
+    color: #08173b;
+  }
+  input {
+    padding: 1.3rem 0 1.3rem 1.3rem;
+    width: 100%;
+    margin-top: .3rem;
+    border: 1px solid #ccc;
+    border-radius: .7rem;
+    font-family: 'Ubuntu-Medium';
+    font-size: 1.6rem;
+  }
+  input::placeholder {
+    font-family: 'Ubuntu-Medium';
+    font-size: 1.6rem;
+    color: #ddd;
+  }
+}

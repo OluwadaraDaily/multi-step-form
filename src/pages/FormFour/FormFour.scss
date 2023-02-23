@@ -1,0 +1,77 @@
+.form-four-container {
+
+  .subscription-summary {
+    padding: 1.5rem;
+    background-color: #eee;
+    border-radius: .5rem;
+    margin: 2rem 0;
+
+    .main-subscription {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .sub-name-div {
+        .sub-name {
+          font-family: 'Ubuntu-Medium';
+          font-size: 1.5rem;
+          line-height: 1.8rem;
+        }
+        .sub-type-change-link {
+          color: #aaa;
+          font-size: 1.3rem;
+          line-height: 1.8rem;
+        }
+      }
+
+      .sub-price {
+        font-family: 'Ubuntu-Bold';
+        font-size: 1.5rem;
+      }
+    }
+
+    .horizontal-rule {
+      margin: 1.5rem 0 1.5rem 0;
+      color: #eee;
+    }
+
+    .addons-list {
+
+      .addon-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem 0;
+
+        .addon-name, .addon-price {
+          font-size: 1.5rem;
+          line-height: 1.85rem;
+        }
+        .addon-name {
+          color: #adadad;
+        }
+      }
+
+
+    }
+  }
+
+  .total-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+
+    .total-text, .total-price {
+      font-size: 1.5rem;
+      line-height: 1.85rem;
+    }
+    .total-text {
+      color: #adadad;
+    }
+    .total-price {
+      font-family: 'Ubuntu-Bold';
+    }
+  }
+}

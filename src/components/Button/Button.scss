@@ -1,0 +1,15 @@
+.btn {
+  font-family: 'Ubuntu-Regular';
+  border: none;
+  padding: 1rem;
+  color: #fff;
+  background-color: #08173b;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+}

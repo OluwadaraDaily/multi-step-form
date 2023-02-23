@@ -1,0 +1,41 @@
+.addon-item-div {
+  border: .1rem solid #acacac;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: .5rem;
+  cursor: pointer;
+  margin: 1.4rem 0;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    .addon-item-text-section {
+      .addon-item-title {
+        font-family: 'Ubuntu-Medium';
+        font-size: 1.5rem;
+        line-height: 2.3rem;
+      }
+      .addon-item-subtitle {
+        font-size: 1.2rem;
+        line-height: 1.9rem;
+        color: #aaa;
+      }
+    }
+
+  }
+  
+  .addon-item-price-section {
+    .addon-price-text {
+      font-size: 1.5rem;
+      color: #acacac;
+    }
+  }
+
+  .addon-item-text-section {
+
+  }
+}
