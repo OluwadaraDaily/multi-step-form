@@ -1,0 +1,22 @@
+.thank-you-container {
+  padding: 6rem 0;
+
+  .thank-you-icon {
+    display: flex;
+    justify-content: center;
+  }
+  .thank-you-text-section {
+    .thank-you-title {
+      text-align: center;
+      font-size: 3rem;
+      line-height: 5.5rem;
+      font-family: 'Ubuntu-Bold';
+    }
+    .thank-you-text {
+      font-size: 1.8rem;
+      color: #adadad;
+      line-height: 3rem;
+      text-align: center;
+    }
+  }
+}

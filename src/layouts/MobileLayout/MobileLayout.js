@@ -5,13 +5,15 @@ import FormOne from '../../pages/FormOne/FormOne'
 import FormTwo from '../../pages/FormTwo/FormTwo'
 import FormThree from '../../pages/FormThree/FormThree'
 import FormFour from '../../pages/FormFour/FormFour'
+import ThankYou from '../../pages/ThankYou/ThankYou'
 
 function MobileLayout() {
   const initialTabState = {
     1: false,
     2: false,
     3: false,
-    4: false
+    4: false,
+    5: false
   }
   const tabItems = [
     {name: 'One', value: '1'},
@@ -61,16 +63,18 @@ function MobileLayout() {
         {tabStates[2] && <FormTwo/>}
         {tabStates[3] && <FormThree/>}
         {tabStates[4] && <FormFour/>}
+        {tabStates[5] && <ThankYou/>}
       </div>
-      <div className="footer">
-        <div className="left">
-        {Number(currentTab) > 1 && <p className='go-back' onClick={() => handleFormMovement('prev')}>Go Back</p>}
+      {Number(currentTab) <= 4 && 
+        <div className="footer">
+          <div className="left">
+          {Number(currentTab) > 1 && <p className='go-back' onClick={() => handleFormMovement('prev')}>Go Back</p>}
+          </div>
+          <div className="right">
+            <Button btnText={Number(currentTab <= 3) ? "Next Step" : "Confirm"} handleOnClick={() => handleFormMovement('next')}/>
+          </div>
         </div>
-        <div className="right">
-          {Number(currentTab) <= 3 && <Button btnText="Next Step" handleOnClick={() => handleFormMovement('next')}/>}
-          {Number(currentTab) > 3 && <Button btnText="Confirm"/>}
-        </div>
-      </div>
+      }
     </div>
   )
 }
