@@ -11,3 +11,33 @@
     color: #aaa;
   }
 }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+
+  .left, .right {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  .left {
+    justify-content: flex-start;
+    .go-back {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #aaa;
+      cursor: pointer;
+    }
+  }
+
+  .right {
+    justify-content: flex-end;
+  }
+}
