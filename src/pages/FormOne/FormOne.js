@@ -1,41 +1,40 @@
 import './FormOne.scss'
 import FormInput from '../../components/FormInput/FormInput'
-// import { useSelector, useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useState, useContext, useEffect } from 'react'
 // import { saveFormOne } from '../../features/formOne/formOneSlice'
+import { FormContext } from '../../layouts/MobileLayout/MobileLayout'
 
+function FormOne({ handleFormOneData }) {
+  // Form one state from the store
+  const formOneState = useSelector((state) => state.formOne)
 
-function FormOne({ handleFormOneData, formOneState }) {
+  // Set initial state with values from the store
   const initialDataState = {
-    name: '',
-    phoneNumber: '',
-    emailAddress: ''
+    name: formOneState.name,
+    phoneNumber: formOneState.phoneNumber,
+    emailAddress: formOneState.emailAddress
   }
-  // const [name, setName] = useState('')
-  // const [emailAddress, setEmailAddress] = useState('')
-  // const [phoneNumber, setPhoneNumber] = useState('')
-  const [dataObj, setDataObj] = useState(initialDataState)
-  // const state = useSelector((state) => state.formOne)
-  // const dispatch = useDispatch()
 
+  const [dataObj, setDataObj] = useState(initialDataState)
+  
   const handleOnChange = (data, name) => {
     setDataObj(prevState => {
       prevState[name] = data
       return {...prevState}
     })
-    console.log("DATA OBJECT =>", dataObj)
-    setTimeout(handleFormOneData(dataObj), 2000)
   }
-  // const saveForm = () => {
-    // dispatch(saveFormOne({
-    //   name,
-    //   emailAddress,
-    //   phoneNumber
-    // }))
-  // }
+
+  useEffect(() => {
+    handleFormOneData(dataObj)
+  }, [dataObj])
+
+  // Use context from mobile layout
+  const formOneData = useContext(FormContext)
+
   return (
     <div className='form-one-container'>
-      <pre>{ JSON.stringify(formOneState) }</pre>
+      <pre>{ JSON.stringify(formOneData) }</pre>
       <div className="text-section">
         <h1 className="title">Personal Info</h1>
         <p className="text">
