@@ -1,9 +1,41 @@
 import './FormOne.scss'
 import FormInput from '../../components/FormInput/FormInput'
+// import { useSelector, useDispatch } from 'react-redux'
+import { useState } from 'react'
+// import { saveFormOne } from '../../features/formOne/formOneSlice'
 
-function FormOne() {
+
+function FormOne({ handleFormOneData, formOneState }) {
+  const initialDataState = {
+    name: '',
+    phoneNumber: '',
+    emailAddress: ''
+  }
+  // const [name, setName] = useState('')
+  // const [emailAddress, setEmailAddress] = useState('')
+  // const [phoneNumber, setPhoneNumber] = useState('')
+  const [dataObj, setDataObj] = useState(initialDataState)
+  // const state = useSelector((state) => state.formOne)
+  // const dispatch = useDispatch()
+
+  const handleOnChange = (data, name) => {
+    setDataObj(prevState => {
+      prevState[name] = data
+      return {...prevState}
+    })
+    console.log("DATA OBJECT =>", dataObj)
+    setTimeout(handleFormOneData(dataObj), 2000)
+  }
+  // const saveForm = () => {
+    // dispatch(saveFormOne({
+    //   name,
+    //   emailAddress,
+    //   phoneNumber
+    // }))
+  // }
   return (
     <div className='form-one-container'>
+      <pre>{ JSON.stringify(formOneState) }</pre>
       <div className="text-section">
         <h1 className="title">Personal Info</h1>
         <p className="text">
@@ -11,9 +43,9 @@ function FormOne() {
         </p>
       </div>
       <div className="form-section">
-        <FormInput label="Name" placeholder="e.g. Stephen King" />
-        <FormInput label="Email Address" placeholder="e.g. stephenking@lorem.com" />
-        <FormInput label="Phone Number" placeholder="e.g. +234 810 121 7017" />
+        <FormInput label="Name" placeholder="e.g. Stephen King" onChange={(e) => handleOnChange(e.target.value, 'name')} value={dataObj['name']} />
+        <FormInput label="Email Address" placeholder="e.g. stephenking@lorem.com" onChange={(e) => handleOnChange(e.target.value, 'emailAddress')} value={dataObj['emailAddress']} />
+        <FormInput label="Phone Number" placeholder="e.g. +234 810 121 7017" onChange={(e) => handleOnChange(e.target.value, 'phoneNumber')} value={dataObj['phoneNumber']} />
       </div>
     </div>
   )

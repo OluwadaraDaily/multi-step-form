@@ -6,8 +6,12 @@ import FormTwo from '../../pages/FormTwo/FormTwo'
 import FormThree from '../../pages/FormThree/FormThree'
 import FormFour from '../../pages/FormFour/FormFour'
 import ThankYou from '../../pages/ThankYou/ThankYou'
+import { useDispatch, useSelector } from 'react-redux'
+import { saveFormOne } from '../../features/formOne/formOneSlice'
+import {setCurrentTab, setTabStates } from '../../features/overallForm/overallFormSlice'
 
 function MobileLayout() {
+  const dispatch = useDispatch()
   const initialTabState = {
     1: false,
     2: false,
@@ -21,26 +25,26 @@ function MobileLayout() {
     {name: 'Three', value: '3'},
     {name: 'Four', value: '4'}
   ]
-  const [tabStates, setTabsStates] = useState(initialTabState)
-  const [currentTab, setCurrentTab] = useState('1')
+  const currentTab = useSelector((state) => state.form.currentTab)
+  const tabStates = useSelector((state) => state.form.tabStates)
+  const [formOneData, setFormOneData] = useState({})
 
   const handleFormStateChange = (tabName) => {
-    setTabsStates((prevState) => initialTabState)
-    setTabsStates((prevState) => {
-      prevState[tabName] = true
-      return {...prevState}
-    })
-    setCurrentTab(tabName)
+    dispatch(setTabStates(tabName))
+    dispatch(setCurrentTab(tabName))
   }
 
   useEffect(() => {
-    handleFormStateChange('4')
+    handleFormStateChange('1')
   }, [])
 
   const handleFormMovement = (direction) => {
     let currentTabNumber = Number(currentTab)
     switch(direction) {
       case 'next':
+        if(currentTabNumber === 1) {
+          dispatch(saveFormOne(formOneData))
+        }
         currentTabNumber++
         break
       case 'prev':
@@ -51,6 +55,14 @@ function MobileLayout() {
     }
     handleFormStateChange(currentTabNumber.toString())
   }
+
+  const handleFormOneData = (data) => {
+    console.log('FORM ONE DATA =>', data)
+    setFormOneData({...data})
+  }
+  
+  const formOneState = useSelector((state) => state.formOne)
+  
   return (
     <div className='mobile-layout-container'>
       <div className="tabs">
@@ -58,8 +70,9 @@ function MobileLayout() {
           <div className={tabStates[item.value] ? "tab-item fill" : "tab-item"} key={index} onClick={() => handleFormStateChange(item.value)}>{ item.value }</div>
         )) }
       </div>
+      <pre>{ JSON.stringify(formOneState) }</pre>
       <div className="form-card">
-        {tabStates[1] && <FormOne/>}
+        {tabStates[1] && <FormOne handleFormOneData={handleFormOneData} formOneState={formOneState}/>}
         {tabStates[2] && <FormTwo/>}
         {tabStates[3] && <FormThree/>}
         {tabStates[4] && <FormFour/>}

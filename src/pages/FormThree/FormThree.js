@@ -31,8 +31,8 @@ function FormThree() {
         </p>
       </div>
       <div className="addons-section">
-        { addOnItems.map((item) => (
-          <AddOnItem title={item.title} subTitle={item.subTitle} monthlyPrice={item.monthlyPrice}  yearlyPrice={item.yearlyPrice} />
+        { addOnItems.map((item, index) => (
+          <AddOnItem key={index} title={item.title} subTitle={item.subTitle} monthlyPrice={item.monthlyPrice}  yearlyPrice={item.yearlyPrice} />
         ))}
       </div>
     </div>
