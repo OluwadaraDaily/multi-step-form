@@ -1,8 +1,17 @@
 import './PlanItem.scss'
+import { useState, useEffect } from 'react'
 
-function PlanItem({ planName, monthlyPrice, yearlyPrice, image, planType }) {
+const PlanItem = ({ planName, monthlyPrice, yearlyPrice, image, planType, selectPlan, selectedPlan }) => {
+  const [selected, setSelected] = useState(false)
+  useEffect(() => {
+    if(selectedPlan.planName === planName) {
+      setSelected(true)
+    } else {
+      setSelected(false)
+    }
+  }, [selectedPlan])
   return (
-    <div className='plan-item-div'>
+    <div className={ selected ? 'plan-item-div selected':'plan-item-div'} onClick={() => selectPlan(planName, planType)}>
       <div className="plan-img">
         <img src={image} alt="" />
       </div>

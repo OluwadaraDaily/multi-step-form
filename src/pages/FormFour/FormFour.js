@@ -1,8 +1,27 @@
 import './FormFour.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { getNumberFromStr } from '../../helpers/formatString'
+
 
 function FormFour() {
+  const formOneState = useSelector((state) => state.formOne)
+  const formTwoState = useSelector((state) => state.formTwo)
+  const formThreeState = useSelector((state) => state.formThree)
+  const addOns = formThreeState.addOns
+  const planType = formTwoState.planType
+  const [total, setTotal] = useState(0)
+
+  useEffect(() => {
+    const costOne = getNumberFromStr(formTwoState.price)
+    const costTwo = addOns.reduce((acc, curr) => acc + getNumberFromStr(curr.price), 0)
+    setTotal((prevValue) => costOne + costTwo)
+  }, [])
+
   return (
     <div className='form-four-container'>
+      <p>FORM 2 = {JSON.stringify(formTwoState)}</p>
+      <p>FORM 3 = {JSON.stringify(formThreeState)}</p>
       <div className="text-section">
         <h1 className="title">Finishing up</h1>
         <p className="text">
@@ -12,26 +31,24 @@ function FormFour() {
       <div className="subscription-summary">
         <div className="main-subscription">
           <div className="sub-name-div">
-            <p className="sub-name">Arcade(Monthly)</p>
+            <p className="sub-name">{formTwoState.planName}({formTwoState.planType})</p>
             <a href="#" className='sub-type-change-link'>Change</a>
           </div>
-          <div className="sub-price">$9/mo</div>
+          <div className="sub-price">{formTwoState.price}</div>
         </div>
         <hr className='horizontal-rule'/>
         <div className="addons-list">
-          <div className="addon-item">
-            <p className="addon-name">Online Service</p>
-            <p className="addon-price">+$1/mo</p>
-          </div>
-          <div className="addon-item">
-            <p className="addon-name">Larger Storage</p>
-            <p className="addon-price">+$2/mo</p>
-          </div>
+          { addOns.map((item, index) => (
+            <div className="addon-item" key={index}>
+              <p className="addon-name">{item.title}</p>
+              <p className="addon-price">{item.price}</p>
+            </div>
+          ))}
         </div>
       </div>
       <div className="total-summary">
         <p className="total-text">Total (per month)</p>
-        <p className="total-price">$12/mo</p>
+        <p className="total-price">${total}/{planType === 'monthly' ? 'mo' : 'yr'}</p>
       </div>
     </div>
   )
