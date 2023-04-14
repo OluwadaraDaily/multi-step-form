@@ -1,7 +1,7 @@
 import './PlanItem.scss'
-import { useState, forwardRef, useImperativeHandle, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
-const PlanItem = ({ planName, monthlyPrice, yearlyPrice, image, planType, selectPlan, selectedPlan }, ref) => {
+const PlanItem = ({ planName, monthlyPrice, yearlyPrice, image, planType, selectPlan, selectedPlan }) => {
   const [selected, setSelected] = useState(false)
   useEffect(() => {
     if(selectedPlan.planName === planName) {

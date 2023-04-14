@@ -18,7 +18,7 @@ function FormTwo({ handleFormTwoData }) {
     {
       planName: "Advanced",
       monthlyPrice: "$12/mo",
-      yearlyPrice: "120/yr",
+      yearlyPrice: "$120/yr",
       image: advancedImage
     },
     {
@@ -89,7 +89,6 @@ function FormTwo({ handleFormTwoData }) {
       </div>
       <div className="plans-section">
         <pre>{JSON.stringify(selectedPlan)}</pre>
-        <p>{String(switchValue)}</p>
         {plans.map((item, index) => (
           <PlanItem
             key={index} 

@@ -1,9 +1,9 @@
 import './Checkbox.scss'
 import CheckIcon from '@mui/icons-material/Check';
 
-function Checkbox() {
+function Checkbox({ checked = false }) {
   return (
-    <div className='checkbox'>
+    <div className='checkbox' style={{ backgroundColor: checked ? '#000' : '#fff' }}>
       <CheckIcon className='check-icon'/>
     </div>
   )

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { saveFormOne } from '../../features/formOne/formOneSlice'
 import { saveFormTwo } from '../../features/formTwo/formTwoSlice'
 import {setCurrentTab, setTabStates } from '../../features/overallForm/overallFormSlice'
+import { saveFormThree } from '../../features/formThree/formThreeSlice'
 
 export const FormContext = createContext()
 
@@ -28,19 +29,25 @@ function MobileLayout() {
   const tabStates = useSelector((state) => state.form.tabStates)
   const formOneState = useSelector((state) => state.formOne)
   const formTwoState = useSelector((state) => state.formTwo)
+  const formThreeState = useSelector((state) => state.formThree)
 
   const initialFormOneState = {
     name: formOneState.name,
     phoneNumber: formOneState.phoneNumber,
     emailAddress: formOneState.emailAddress
   }
+  
   const initialFormTwoState = {
     planName: formTwoState.planName,
     price: formTwoState.price,
     planType: formTwoState.planType
   }
+
+  const initialFormThreeState = formThreeState.addOns
+
   const [formOneData, setFormOneData] = useState(initialFormOneState)
   const [formTwoData, setFormTwoData] = useState(initialFormTwoState)
+  const [formThreeData, setFormThreeData] = useState(initialFormThreeState)
   
   // Handles which form tab is active
   const handleFormStateChange = (tabName) => {
@@ -62,6 +69,9 @@ function MobileLayout() {
         if(currentTabNumber === 2) {
           dispatch(saveFormTwo(formTwoData))
         }
+        if(currentTabNumber === 3) {
+          dispatch(saveFormThree(formThreeData))
+        }
         currentTabNumber++
         break
       case 'prev':
@@ -80,6 +90,10 @@ function MobileLayout() {
   const handleFormTwoData = (data) => {
     setFormTwoData({...data})
   }
+
+  const handleFormThreeData = (data) => {
+    setFormThreeData(data)
+  }
   
   return (
     <FormContext.Provider value={formOneData}>
@@ -93,7 +107,7 @@ function MobileLayout() {
         <div className="form-card">
           {tabStates[1] && <FormOne handleFormOneData={handleFormOneData}/>}
           {tabStates[2] && <FormTwo handleFormTwoData={handleFormTwoData}/>}
-          {tabStates[3] && <FormThree/>}
+          {tabStates[3] && <FormThree handleFormThreeData={handleFormThreeData}/>}
           {tabStates[4] && <FormFour/>}
           {tabStates[5] && <ThankYou/>}
         </div>
