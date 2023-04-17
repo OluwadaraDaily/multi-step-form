@@ -12,10 +12,20 @@
     border-radius: .7rem;
     font-family: 'Ubuntu-Medium';
     font-size: 1.6rem;
+    outline: none;
   }
   input::placeholder {
     font-family: 'Ubuntu-Medium';
     font-size: 1.6rem;
     color: #ddd;
   }
+  .error-input {
+    border-color:red;
+  }
+}
+
+p.error {
+  color: red;
+  margin: 0;
+  margin-top: .5rem;
 }

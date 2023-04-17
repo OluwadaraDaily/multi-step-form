@@ -88,7 +88,6 @@ function FormTwo({ handleFormTwoData }) {
         </p>
       </div>
       <div className="plans-section">
-        <pre>{JSON.stringify(selectedPlan)}</pre>
         {plans.map((item, index) => (
           <PlanItem
             key={index} 

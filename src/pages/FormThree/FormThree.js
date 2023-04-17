@@ -51,11 +51,10 @@ function FormThree({ handleFormThreeData }) {
   // Send data to layout
   useEffect(() => {
     handleFormThreeData(selectedAddOns)
-  }, [selectedAddOns])
+  }, [selectedAddOns, handleFormThreeData])
 
   return (
     <div className='form-three-container'>
-      <p>{JSON.stringify(formThreeState)}</p>
       <div className="text-section">
         <h1 className="title">Pick add-ons</h1>
         <p className="text">

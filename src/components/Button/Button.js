@@ -1,9 +1,9 @@
 import './Button.scss'
 
-function Button({ btnText, disabled = false, handleOnClick }) {
+function Button({ btnText, disabled = false, handleOnClick, type = 'button' }) {
   return (
     <>
-      <button className='btn' disabled={disabled} onClick={handleOnClick}>{ btnText }</button>
+      <button type={type} className='btn' disabled={disabled} onClick={handleOnClick}>{ btnText }</button>
     </>
   )
 }
