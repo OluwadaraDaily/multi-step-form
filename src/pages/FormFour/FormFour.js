@@ -2,10 +2,11 @@ import './FormFour.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getNumberFromStr } from '../../helpers/formatString'
+import {setCurrentTab, setTabStates } from '../../features/overallForm/overallFormSlice'
 
 
 function FormFour() {
-  const formOneState = useSelector((state) => state.formOne)
+  const dispatch = useDispatch()
   const formTwoState = useSelector((state) => state.formTwo)
   const formThreeState = useSelector((state) => state.formThree)
   const addOns = formThreeState.addOns
@@ -15,13 +16,16 @@ function FormFour() {
   useEffect(() => {
     const costOne = getNumberFromStr(formTwoState.price)
     const costTwo = addOns.reduce((acc, curr) => acc + getNumberFromStr(curr.price), 0)
-    setTotal((prevValue) => costOne + costTwo)
+    setTotal(() => costOne + costTwo)
   }, [])
+
+  const moveToForm = (tabName) => {
+    dispatch(setTabStates(tabName))
+    dispatch(setCurrentTab(tabName))
+  }
 
   return (
     <div className='form-four-container'>
-      <p>FORM 2 = {JSON.stringify(formTwoState)}</p>
-      <p>FORM 3 = {JSON.stringify(formThreeState)}</p>
       <div className="text-section">
         <h1 className="title">Finishing up</h1>
         <p className="text">
@@ -32,7 +36,7 @@ function FormFour() {
         <div className="main-subscription">
           <div className="sub-name-div">
             <p className="sub-name">{formTwoState.planName}({formTwoState.planType})</p>
-            <a href="#" className='sub-type-change-link'>Change</a>
+            <a href="#" className='sub-type-change-link' onClick={() => moveToForm('2')}>Change</a>
           </div>
           <div className="sub-price">{formTwoState.price}</div>
         </div>

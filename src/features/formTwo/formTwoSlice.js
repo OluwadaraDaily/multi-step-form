@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   saved: false,
-  planName: '',
-  price: '',
-  planType: ''
+  planName: null,
+  price: null,
+  planType: null
 }
 
 const formTwoSlice = createSlice({

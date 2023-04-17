@@ -11,6 +11,8 @@ import { saveFormOne } from '../../features/formOne/formOneSlice'
 import { saveFormTwo } from '../../features/formTwo/formTwoSlice'
 import {setCurrentTab, setTabStates } from '../../features/overallForm/overallFormSlice'
 import { saveFormThree } from '../../features/formThree/formThreeSlice'
+import { useFormik } from 'formik'
+import { basicSchema } from '../../schemas'
 
 export const FormContext = createContext()
 
@@ -38,9 +40,9 @@ function MobileLayout() {
   }
   
   const initialFormTwoState = {
-    planName: formTwoState.planName,
-    price: formTwoState.price,
-    planType: formTwoState.planType
+    planName: formTwoState.planName || null,
+    price: formTwoState.price || null,
+    planType: formTwoState.planType || null
   }
 
   const initialFormThreeState = formThreeState.addOns
@@ -48,6 +50,7 @@ function MobileLayout() {
   const [formOneData, setFormOneData] = useState(initialFormOneState)
   const [formTwoData, setFormTwoData] = useState(initialFormTwoState)
   const [formThreeData, setFormThreeData] = useState(initialFormThreeState)
+  const [submitForm, setSubmitForm] = useState(false)
   
   // Handles which form tab is active
   const handleFormStateChange = (tabName) => {
@@ -64,9 +67,20 @@ function MobileLayout() {
     switch(direction) {
       case 'next':
         if(currentTabNumber === 1) {
-          dispatch(saveFormOne(formOneData))
+          setSubmitForm(prevVal => !prevVal)
+          if(Object.keys(errors).length) {
+            break
+          }
         }
         if(currentTabNumber === 2) {
+          const values = Object.values(formTwoData)
+          console.log('Values ->', values)
+          const findEmpty = values.filter(item => item === null)
+          console.log('Find Empty 1 =>', findEmpty)
+          console.log('Find Empty 2 =>', !!findEmpty.length)
+          if(!!findEmpty.length || !values.length) {
+            break
+          }
           dispatch(saveFormTwo(formTwoData))
         }
         if(currentTabNumber === 3) {
@@ -94,6 +108,22 @@ function MobileLayout() {
   const handleFormThreeData = (data) => {
     setFormThreeData(data)
   }
+
+  const onSubmit = (values, actions) => {
+    handleFormOneData(values)
+    dispatch(saveFormOne(values))
+  }
+
+  // Use Formik for form state management
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
+    initialValues: {
+      name: formOneState.name,
+      emailAddress: formOneState.phoneNumber,
+      phoneNumber: formOneState.emailAddress
+    },
+    validationSchema: basicSchema,
+    onSubmit
+  })
   
   return (
     <FormContext.Provider value={formOneData}>
@@ -103,9 +133,19 @@ function MobileLayout() {
             <div className={tabStates[item.value] ? "tab-item fill" : "tab-item"} key={index} onClick={() => handleFormStateChange(item.value)}>{ item.value }</div>
           )) }
         </div>
-        <pre>{ JSON.stringify(formOneState) }</pre>
         <div className="form-card">
-          {tabStates[1] && <FormOne handleFormOneData={handleFormOneData}/>}
+          {tabStates[1] && 
+            <FormOne 
+              submitForm={submitForm}
+              formikValues={values}
+              formikHandleChange={handleChange}
+              formikErrors={errors}
+              formikTouched={touched}
+              formikHandleSubmit={handleSubmit}
+              formikHandleBlur={handleBlur}
+              formikOnSubmit={onSubmit}
+            />
+          }
           {tabStates[2] && <FormTwo handleFormTwoData={handleFormTwoData}/>}
           {tabStates[3] && <FormThree handleFormThreeData={handleFormThreeData}/>}
           {tabStates[4] && <FormFour/>}
@@ -117,7 +157,7 @@ function MobileLayout() {
             {Number(currentTab) > 1 && <p className='go-back' onClick={() => handleFormMovement('prev')}>Go Back</p>}
             </div>
             <div className="right">
-              <Button btnText={Number(currentTab <= 3) ? "Next Step" : "Confirm"} handleOnClick={() => handleFormMovement('next')}/>
+              <Button type="submit" btnText={Number(currentTab <= 3) ? "Next Step" : "Confirm"} handleOnClick={() => handleFormMovement('next')}/>
             </div>
           </div>
         }
