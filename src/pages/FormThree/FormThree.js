@@ -1,11 +1,11 @@
 import './FormThree.scss'
 import AddOnItem from '../../components/AddOnItem/AddOnItem'
 import { useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import Button from '../../components/Button/Button'
 
-function FormThree({ handleFormThreeData }) {
+function FormThree({ initialValues, handleFormMovement, submitStageData }) {
   const { planType } = useSelector((state) => state.formTwo)
-  const formThreeState = useSelector((state) => state.formThree)
   const addOnItems = [
     {
       title: 'Online Service',
@@ -26,7 +26,7 @@ function FormThree({ handleFormThreeData }) {
       yearlyPrice: '+$20/yr'
     }
   ]
-  const initialSelectedAddOns = formThreeState.addOns
+  const initialSelectedAddOns = initialValues?.addOns || []
   const [selectedAddOns, setSelectedAddOns] = useState(initialSelectedAddOns)
 
   const handleOnClick = (title, planType) => {
@@ -48,10 +48,10 @@ function FormThree({ handleFormThreeData }) {
     })
   }
 
-  // Send data to layout
-  useEffect(() => {
-    handleFormThreeData(selectedAddOns)
-  }, [selectedAddOns, handleFormThreeData])
+  const submitForm = () => {
+    submitStageData({ addOns: selectedAddOns })
+    handleFormMovement('next', { addOns: selectedAddOns })
+  }
 
   return (
     <div className='form-three-container'>
@@ -74,6 +74,14 @@ function FormThree({ handleFormThreeData }) {
             selectedAddOns={selectedAddOns}
           />
         ))}
+      </div>
+      <div className="footer">
+        <div className="left">
+          <p className='go-back' onClick={() => handleFormMovement('prev')}>Go Back</p>
+        </div>
+        <div className="right">
+          <Button type="submit" btnText="Next Step" handleOnClick={() => submitForm()}/>
+        </div>
       </div>
     </div>
   )

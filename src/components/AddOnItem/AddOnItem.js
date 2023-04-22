@@ -3,7 +3,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import { useEffect, useState } from 'react';
 
 
-function AddOnItem({ title, subTitle, monthlyPrice, yearlyPrice, planType = 'monthly', handleOnClick, selectedAddOns }) {
+function AddOnItem({ title, subTitle, monthlyPrice, yearlyPrice, planType = 'monthly', handleOnClick, selectedAddOns = [] }) {
   const [checked, setChecked] = useState(false)
   useEffect(() => {
     if(selectedAddOns.find(item => item.title === title)) {
