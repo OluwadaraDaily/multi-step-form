@@ -4,10 +4,17 @@ import arcadeImage from '../../images/icon-arcade.svg'
 import advancedImage from '../../images/icon-advanced.svg'
 import proImage from '../../images/icon-pro.svg'
 import Switch from '../../components/Switch/Switch'
-import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useState, forwardRef } from 'react'
+import Button from '../../components/Button/Button'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Typography from '@mui/material/Typography';
 
-function FormTwo({ handleFormTwoData }) {
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+function FormTwo({ initialValues, handleFormMovement, submitStageData }) {
   const plans = [
     {
       planName: "Arcade",
@@ -28,14 +35,7 @@ function FormTwo({ handleFormTwoData }) {
       image: proImage
     },
   ]
-  // Form two state from the store
-  const formTwoState = useSelector((state) => state.formTwo)
-  const selectedPlanInitialState = {
-    planName: formTwoState.planName,
-    planType: formTwoState.planType,
-    price: formTwoState.price
-  }
-  const initialPlanType = formTwoState.planType || 'monthly'
+  const initialPlanType = initialValues?.planType || 'monthly'
   let initialSwitchValue
   if(initialPlanType === 'yearly') {
     initialSwitchValue = true
@@ -45,7 +45,9 @@ function FormTwo({ handleFormTwoData }) {
   
   const [switchValue, setSwitchValue] = useState(initialSwitchValue)
   const [planType, setPlanType] = useState(initialPlanType)
-  const [selectedPlan, setSelectedPlan] = useState(selectedPlanInitialState)
+  const [selectedPlan, setSelectedPlan] = useState(initialValues)
+  const [open, setOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('')
   
   const handleSwitchOnClick = () => {
     setSwitchValue(prevValue => !prevValue)
@@ -61,7 +63,7 @@ function FormTwo({ handleFormTwoData }) {
   const selectPlan = (name, type) => {
     const plan = plans.find(item => item.planName === name)
     setSelectedPlan({})
-    setSelectedPlan(prevValue => {
+    setSelectedPlan(() => {
       let selectedPlan = {}
       selectedPlan.planName = plan.planName
       selectedPlan.planType = planType
@@ -74,10 +76,22 @@ function FormTwo({ handleFormTwoData }) {
     })
   }
 
-  // Send data to layout
-  useEffect(() => {
-    handleFormTwoData(selectedPlan)
-  }, [selectedPlan])
+  const submitForm = () => {
+    if(!Object.keys(selectedPlan).length || !!Object.values(selectedPlan).filter(item => item === null).length) {
+      setErrorMessage('Please select a plan')
+      setOpen(true)
+      return;
+    }
+    submitStageData(selectedPlan)
+    handleFormMovement('next', selectedPlan)
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   return (
     <div className='form-two-container'>
@@ -87,6 +101,13 @@ function FormTwo({ handleFormTwoData }) {
           You have the option of monthly or yearly billing
         </p>
       </div>
+      <Snackbar open={open} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+          <Typography variant='h6'>
+            { errorMessage }
+          </Typography>
+        </Alert>
+      </Snackbar>
       <div className="plans-section">
         {plans.map((item, index) => (
           <PlanItem
@@ -104,6 +125,14 @@ function FormTwo({ handleFormTwoData }) {
       </div>
       <div className="plan-switch">
         <Switch handleOnClick={handleSwitchOnClick}  switchValue={switchValue}/>
+      </div>
+      <div className="footer">
+        <div className="left">
+          <p className='go-back' onClick={() => handleFormMovement('prev')}>Go Back</p>
+        </div>
+        <div className="right">
+          <Button type="submit" btnText="Next Step" handleOnClick={() => submitForm()}/>
+        </div>
       </div>
     </div>
   )

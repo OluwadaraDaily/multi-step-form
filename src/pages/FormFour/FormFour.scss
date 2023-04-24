@@ -62,6 +62,7 @@
     justify-content: space-between;
     width: 90%;
     margin: 0 auto;
+    margin-bottom: 2rem;
 
     .total-text, .total-price {
       font-size: 1.5rem;
@@ -73,5 +74,11 @@
     .total-price {
       font-family: 'Ubuntu-Bold';
     }
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .form-four-container {
+    width: 100%;
   }
 }

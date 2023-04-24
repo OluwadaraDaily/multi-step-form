@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 const PlanItem = ({ planName, monthlyPrice, yearlyPrice, image, planType, selectPlan, selectedPlan }) => {
   const [selected, setSelected] = useState(false)
   useEffect(() => {
-    if(selectedPlan.planName === planName) {
+    if(selectedPlan?.planName === planName) {
       setSelected(true)
     } else {
       setSelected(false)

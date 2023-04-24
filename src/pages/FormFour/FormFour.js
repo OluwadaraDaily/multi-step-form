@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getNumberFromStr } from '../../helpers/formatString'
 import {setCurrentTab, setTabStates } from '../../features/overallForm/overallFormSlice'
+import Button from '../../components/Button/Button'
 
 
-function FormFour() {
+function FormFour({ handleFormMovement }) {
   const dispatch = useDispatch()
   const formTwoState = useSelector((state) => state.formTwo)
   const formThreeState = useSelector((state) => state.formThree)
@@ -53,6 +54,14 @@ function FormFour() {
       <div className="total-summary">
         <p className="total-text">Total (per month)</p>
         <p className="total-price">${total}/{planType === 'monthly' ? 'mo' : 'yr'}</p>
+      </div>
+      <div className="footer">
+        <div className="left">
+          <p className='go-back' onClick={() => handleFormMovement('prev')}>Go Back</p>
+        </div>
+        <div className="right">
+          <Button type="submit" btnText="Submit" handleOnClick={() => handleFormMovement('next')}/>
+        </div>
       </div>
     </div>
   )

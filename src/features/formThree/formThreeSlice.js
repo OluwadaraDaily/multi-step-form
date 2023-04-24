@@ -10,7 +10,7 @@ const formThreeSlice = createSlice({
   initialState,
   reducers: {
     saveFormThree: (state, action) => {
-      state.addOns = action.payload
+      state.addOns = action.payload.addOns || []
       state.saved = true
     } 
   }
