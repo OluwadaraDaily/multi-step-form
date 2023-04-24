@@ -1,3 +1,9 @@
 .addons-section {
   margin: 1rem 0;
 }
+
+@media only screen and (min-width: 1050px) {
+  .form-three-container {
+    width: 100%;
+  }
+}
