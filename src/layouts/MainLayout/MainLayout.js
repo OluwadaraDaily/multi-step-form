@@ -57,7 +57,7 @@ function MainLayout() {
 
   // Handles which form tab is active
   const handleFormStateChange = (tabName, isBtnClicked = false) => {
-    if(!isBtnClicked) {
+    if(!isBtnClicked && Number(currentTab) < Number(tabName)) {
       setJumpError(true)
     }
     if(Number(currentTab) >= Number(tabName) || isBtnClicked) {
