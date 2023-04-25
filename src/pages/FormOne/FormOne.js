@@ -1,8 +1,5 @@
 import './FormOne.scss'
 import FormInput from '../../components/FormInput/FormInput'
-import { useSelector } from 'react-redux'
-import { useState, useContext, useEffect } from 'react'
-import { FormContext } from '../../layouts/MainLayout/MainLayout'
 import { useFormik } from 'formik'
 import { basicSchema } from '../../schemas'
 import Button from '../../components/Button/Button'
@@ -21,7 +18,7 @@ function FormOne(props) {
     handleFormMovement('next', values)
   }
 
-  const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: basicSchema,
     onSubmit
