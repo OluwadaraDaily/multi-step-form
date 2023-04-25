@@ -68,9 +68,11 @@ function MainLayout() {
   }
 
   // Initial form state
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     handleFormStateChange(currentTab, true)
-  }, [currentTab, handleFormStateChange])
+    // eslint-disable-next-line
+  }, [currentTab])
 
   // Handles Form Movement
   const handleFormMovement = (direction, levelData) => {
