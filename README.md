@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Frontend Mentor - Multi-step form solution
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a solution to the [Multi-step form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This mini-project is a multi-step form which is ubuqitous in this day and age. It shows different stages of a form as you progress. It also prevents some invalid actions. I worked on this to improve my understanding of ReactJS as well as Redux Toolkit and Material UI components.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### The challenge
 
-### `npm test`
+Users should be able to:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Complete each step of the sequence
+- Go back to a previous step to update their selections
+- See a summary of their selections on the final step and confirm their order
+- View the optimal layout for the interface depending on their device's screen size
+- See hover and focus states for all interactive elements on the page
+- Receive form validation messages if:
+  - A field has been missed
+  - The email address is not formatted correctly
+  - A step is submitted, but no selection has been made
 
-### `npm run build`
+### Screenshot
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![DESKTOP VIEW](./src/images/desktop-view.png)
+![MOBILE VIEW](./src/images/mobile-view.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Links
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Solution URL: [Github Repo](https://github.com/OluwadaraDaily/multi-step-form)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-### `npm run eject`
+## My process
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Built with
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [Redux Toolkit](https://redux-toolkit.js.org/) - A State Management tool
+- [Material UI](https://mui.com/) - UI Component Library
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### What I learned
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+I learned a number of things during this project. They are as follows:
 
-## Learn More
+- [x] I learned how to use Redux Toolkit
+- [x] I improved my understanding of React hooks
+- [x] I learned how to use Material UI components and their API
+- [x] I learned how to use Formik and Yup for form validation
+- [x] I learned how to use the React Router v6
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Continued development
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- An improvement that can be made to the project would be that buttons on each form stage to be disabled until the form passes the Yup validation
+- Also, automated testing can be implemented.
 
-### Code Splitting
+### Useful resources
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [How to add custom font file to your React App?](https://dev.to/ziqinyeow/how-to-add-custom-font-file-to-your-react-app-31kb) - This helped me with adding the custom Ubuntu fonts.
+- [How to Use Sass in React](https://www.makeuseof.com/react-sass-how-use) - This helped me to setup using SCSS in React.
+- [React Router v6 in Depth](https://www.youtube.com/watch?v=OMQ2QARHPo0&list=PL4cUxeGkcC9iVKmtNuCeIswnQ97in2GGf) - This helped me to understand how the new React Router Works. It is a playlist on Youtube.
+- [Redux and Redux Toolkit](https://www.youtube.com/watch?v=0awA5Uw6SJE&list=PLC3y8-rFHvwiaOAuTtVXittwybYIorRB3) - This helped me to understand Redux and Redux Toolkit.
 
-### Analyzing the Bundle Size
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Website - [Oluwadara Oloye](https://github.com/OluwadaraDaily)
+- Frontend Mentor - [@OluwadaraDaily](https://www.frontendmentor.io/profile/OluwadaraDaily)
+- Twitter - [@OluwadaraDaily](https://www.twitter.com/OluwadaraDaily)
 
-### Making a Progressive Web App
+## Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Huge shoutout to [Ndu](https://www.linkedin.com/in/yomi-ndu/) for helping me with a lot of logic and system design issues I had.
