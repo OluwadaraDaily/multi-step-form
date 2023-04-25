@@ -9,7 +9,7 @@ const PlanItem = ({ planName, monthlyPrice, yearlyPrice, image, planType, select
     } else {
       setSelected(false)
     }
-  }, [selectedPlan])
+  }, [selectedPlan, planName])
   return (
     <div className={ selected ? 'plan-item-div selected':'plan-item-div'} onClick={() => selectPlan(planName, planType)}>
       <div className="plan-img">

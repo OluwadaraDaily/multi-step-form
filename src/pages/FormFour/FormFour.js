@@ -18,7 +18,7 @@ function FormFour({ handleFormMovement }) {
     const costOne = getNumberFromStr(formTwoState.price)
     const costTwo = addOns.reduce((acc, curr) => acc + getNumberFromStr(curr.price), 0)
     setTotal(() => costOne + costTwo)
-  }, [])
+  }, [formTwoState.price, addOns])
 
   const moveToForm = (tabName) => {
     dispatch(setTabStates(tabName))
@@ -37,7 +37,7 @@ function FormFour({ handleFormMovement }) {
         <div className="main-subscription">
           <div className="sub-name-div">
             <p className="sub-name">{formTwoState.planName}({formTwoState.planType})</p>
-            <a href="#" className='sub-type-change-link' onClick={() => moveToForm('2')}>Change</a>
+            <p className='sub-type-change-link' onClick={() => moveToForm('2')}>Change</p>
           </div>
           <div className="sub-price">{formTwoState.price}</div>
         </div>

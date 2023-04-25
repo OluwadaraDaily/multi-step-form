@@ -56,6 +56,7 @@ function MainLayout() {
   }
 
   // Handles which form tab is active
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleFormStateChange = (tabName, isBtnClicked = false) => {
     if(!isBtnClicked && Number(currentTab) < Number(tabName)) {
       setJumpError(true)
@@ -69,7 +70,7 @@ function MainLayout() {
   // Initial form state
   useEffect(() => {
     handleFormStateChange(currentTab, true)
-  }, [])
+  }, [currentTab, handleFormStateChange])
 
   // Handles Form Movement
   const handleFormMovement = (direction, levelData) => {
