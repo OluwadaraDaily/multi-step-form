@@ -23,20 +23,20 @@ export const FormContext = createContext()
 function MainLayout() {
   const dispatch = useDispatch()
 
-  // A list of the form tab items
-  const tabItems = [
-    {name: 'One', value: '1', stepTitle: 'Your Info', tag: 'your-info'},
-    {name: 'Two', value: '2', stepTitle: 'Select Plan', tag: 'select-plan'},
-    {name: 'Three', value: '3', stepTitle: 'Add-Ons', tag: 'add-ons'},
-    {name: 'Four', value: '4', stepTitle: 'Summary', tag: 'summary'}
-  ]
-
   // States from the store
   const currentTab = Number(useSelector((state) => state.form.currentTab))
   const tabStates = useSelector((state) => state.form.tabStates)
   const formOneState = useSelector((state) => state.formOne)
   const formTwoState = useSelector((state) => state.formTwo)
   const formThreeState = useSelector((state) => state.formThree)
+
+  // A list of the form tab items
+  const tabItems = [
+    {name: 'One', value: '1', stepTitle: 'Your Info', tag: 'your-info', state: formOneState},
+    {name: 'Two', value: '2', stepTitle: 'Select Plan', tag: 'select-plan', state: formTwoState},
+    {name: 'Three', value: '3', stepTitle: 'Add-Ons', tag: 'add-ons', state: formThreeState},
+    {name: 'Four', value: '4', stepTitle: 'Summary', tag: 'summary', state: { saved: true }}
+  ]
 
   const [windowWidth, setwindowWidth] = useState(window.innerWidth)
   const [jumpError, setJumpError] = useState(false)
@@ -58,10 +58,24 @@ function MainLayout() {
   // Handles which form tab is active
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleFormStateChange = (tabName, isBtnClicked = false) => {
-    if(!isBtnClicked && Number(currentTab) < Number(tabName)) {
-      setJumpError(true)
+    let isNewTabSaved
+    let newTab = tabName.toString()
+    const tabItem = tabItems.find(item => item.value === newTab)
+
+    console.log('Tab Item ->', tabItem)
+    console.log('Tab Name ->', tabName)
+    console.log('tabItems ->', tabItems)
+    console.log('Number(tabName) ->', Number(tabName))
+    
+    if(!tabItem && Number(tabName) < 5) return
+    if(Number(tabName) < 5) {
+      isNewTabSaved = tabItem.state.saved
     }
-    if(Number(currentTab) >= Number(tabName) || isBtnClicked) {
+    
+
+    if((!isNewTabSaved && !isBtnClicked && Number(tabName) < 5)) {
+      setJumpError(true)
+    } else {
       dispatch(setTabStates(tabName))
       dispatch(setCurrentTab(tabName))
     }
